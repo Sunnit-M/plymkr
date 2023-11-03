@@ -1,4 +1,4 @@
 rem dev.1
-echo hello
-echo hi
-echo how are you
+(
+    echo echo hello
+) > hello.bat
