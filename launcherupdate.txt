@@ -1,2 +1,3 @@
 rem dev.1
 echo echo hello >hello.bat
+echo echo how are you >>hello.bat
