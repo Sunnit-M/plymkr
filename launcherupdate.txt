@@ -1,4 +1,2 @@
 rem dev.1
-(
-    echo echo hello
-) > hello.bat
+echo echo hello >hello.bat
