@@ -5,7 +5,7 @@ md plymkr
 cd plymkr
 (
     echo @echo off
-    echo echo curl https://raw.githubusercontent.com/Sunnit-M/plymkr/main/launcherupdate.txt --ssl-no-revoke>install.bat
+    echo curl https://raw.githubusercontent.com/Sunnit-M/plymkr/main/launcherupdate.txt --ssl-no-revoke>install.bat
     echo echo call install.bat
     echo echo installing...
     echo timeout -t 10
