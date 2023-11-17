@@ -1,3 +1,112 @@
-rem dev.1
-echo echo hello>hello.bat
-echo echo how are you>>hello.bat
+echo @echo off
+echo setlocal enabledelayedexpansion
+echoset vers=dev.1
+echo set null=
+
+
+echo curl https://raw.githubusercontent.com/Sunnit-M/plymkr/main/launcherupdate.txt --ssl-no-revoke>updatemain.txt
+echo for /f "delims=" %%a in ('type updatemain.txt') do (
+echo set variable=%%a
+echo goto break
+echo )
+echo :break
+echo if !variable!==!null! (echo You are not connected to the internet & goto welcome)
+echo set variable=!variable:~4!
+echo del updatemain.txt
+echo if not !variable!==!vers! (echo **A new launcher update is avabilble [!variable!], use the update/main**)
+
+echo :welcome
+echo echo Welcome to the plymkr launcher
+
+echo :input
+echo set /p command=/
+echo goto !command!
+
+echo :help
+echo echo *Type everything in lowercase*
+echo echo -------------------------------------------------------------------------------------------
+echo echo Play - Input the game you want to play's name as it is listed in the library all lowercase
+echo echo and the game will open.
+echo echo -------------------------------------------------------------------------------------------
+echo echo Library - It will list all games loaded on you computer and not listed on your computer
+echo echo it will also list if any of the games need to be updated.
+echo echo -------------------------------------------------------------------------------------------
+echo echo Install - Input the game you want to install and it will load the game onto your device
+echo echo you need to be connected to the internet to install any games.
+echo echo -------------------------------------------------------------------------------------------
+echo echo Update - Input the game you want to update or use main for any launcher updates specify
+echo echo how it is spelled as it is listed on the library and for launcher updates use main.
+echo echo *NOTE: You need to be connected to the internet and launcher updates are required when a
+echo echo new game comes out to play and install so if there is a launcher update it is probably a new game too.*
+echo echo -------------------------------------------------------------------------------------------
+echo echo Help - Lists how to use all commands
+echo echo -------------------------------------------------------------------------------------------
+echo echo Exit - Type exit if you accidently went in any command and you need to get back the the start
+echo echo -------------------------------------------------------------------------------------------
+echo echo echo Error - Lists all the possible errors that might happen
+echo echo -------------------------------------------------------------------------------------------
+echo goto input
+
+echo :clear
+echo cls
+echo goto input
+
+echo :playexit
+echo goto input
+
+echo :updateexit
+echo goto input
+
+echo :installexit
+echo goto input
+
+echo :play
+echo set /p game=/play/
+echo goto !command!!game!
+echo goto input
+
+echo :playthe_tower
+echo start cmd /c TheTower.bat
+echo goto input
+
+echo :playtictactoe
+echo start cmd /c TicTacToe.bat
+echo goto input
+
+echo :install
+echo set /p game=/install/
+echo goto !command!!game!
+
+echo :parrot
+echo curl parrot.live
+
+echo :library
+echo echo installed:
+echo if exist TicTacToe.bat (echo TicTacToe)
+echo if exist TheTower.bat (echo The_Tower)
+echo if exist Roulete.bat (echo Roulete)
+echo if exist RealRoulete.bat (echo Real_Roulete)
+
+echo echo avabilble to install:
+echo if not exist TicTacToe.bat (echo TicTacToe)
+echo if not exist TheTower.bat (echo The_Tower)
+echo goto input
+
+echo :update
+echo set /p game=/update/
+echo goto !command!!game!
+echo goto error
+
+echo :updatemain
+echo curl https://raw.githubusercontent.com/Sunnit-M/plymkr/main/launcherupdate.txt --ssl-no-revoke>executeupdate.bat
+echo call executeupdate.bat
+echo echo Updating...
+echo timeout -t 5
+echo del executeupdate.bat
+echo goto kill
+echo :error
+echo there was an error with the procces /!command!/!game!
+echo pause
+echo :kill
+echo start "plymkr" cmd /c plymkr.bat
+echo :exit
