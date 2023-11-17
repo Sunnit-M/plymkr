@@ -7,7 +7,7 @@ echo set null=
 
 
 echo curl https://raw.githubusercontent.com/Sunnit-M/plymkr/main/launcherupdate.txt --ssl-no-revoke>updatemain.txt
-echo for /f "delims=" %%a in ('type updatemain.txt') do (
+echo for /f "delims=" %%a in ('type updatemain.txt')^ do (
 echo set variable=%%a
 echo goto break
 echo )
