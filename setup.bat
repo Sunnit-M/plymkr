@@ -14,4 +14,4 @@ cd plymkr
 )>plymkr.bat
 mklink C:\Users\%USERNAME%\plymkr\plymkr.bat C:\WINDOWS\system32
 echo the pymkr command is setup now all you have to do is run plymkr in you command prompt in terminal
-timeout -t 5
+pause
